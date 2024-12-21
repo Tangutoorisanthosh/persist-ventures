@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vestex AI Tweets</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .tweet-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .tweet {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Vestex AI Tweets</h1>
+    <div class="tweet-container" id="tweet-container"></div>
+    <script>
+        fetch('/api/tweets')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('tweet-container');
+                data.tweets.forEach(tweet => {
+                    const div = document.createElement('div');
+                    div.className='tweet';
+ div.textContent = tweet;
+                    container.appendChild(div);
+                });
+            });
+    </script>
+</body>
+</html>
